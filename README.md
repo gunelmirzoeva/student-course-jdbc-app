@@ -1,12 +1,11 @@
                         Student-Course JDBC App
             📖 Overview
-            This project is a simple Java application that demonstrates JDBC concepts using PostgreSQL. It includes functionality to:
-            
+            This project is a simple Java application that demonstrates JDBC concepts using PostgreSQL. 
+
+            It currently includes functionality to:
+
             Connect to a PostgreSQL database
-            
-            Insert student records into a table
-            
-            Retrieve and display all student records
+            Perform CRUD operations (Create, Read, Update, Delete) for students via the DAO pattern
             
             📂 Project Structure
             src/
@@ -61,22 +60,26 @@
             <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.3</version>
+            <version>42.7.5</version>
             </dependency>
             🚀 Features
-            Connects to PostgreSQL and performs basic CRUD operations.
+            Implements the DAO (Data Access Object) pattern for cleanly separating database logic
+
+            Provides basic CRUD operations for students
             
-            Demonstrates JDBC concepts like Connection, PreparedStatement, and ResultSet.
+            Demonstrates JDBC concepts like Connection, PreparedStatement, and ResultSet
             
             📝 Notes
             Ensure PostgreSQL is running before executing the application.
             
-            Customize the database credentials as per your local setup.
+            Customize database credentials in the DatabaseConfig class as per your local setup
             
             💡 Future Enhancements
-            Add more tables to represent courses and student-course relationships.
+            Add a Course entity and implement many-to-many relationships with students
+
+            Use JOIN queries to fetch related data from multiple tables
             
-            Incorporate exception handling and logging for better error management.
+            Incorporate exception handling and logging for better error management
             
-            Explore integration with an ORM framework like Hibernate.
+            Explore integration with an ORM framework like Hibernate
             
