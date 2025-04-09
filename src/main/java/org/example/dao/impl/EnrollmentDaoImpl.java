@@ -20,7 +20,7 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
     }
 
     @Override
-    public void enrollStudentInCourse(int studentId, int courseId) {
+    public void enroll(int studentId, int courseId) {
         String sql = "insert into student_courses (student_id, course_id) values (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, studentId);
@@ -31,6 +31,23 @@ public class EnrollmentDaoImpl implements EnrollmentDao {
             System.out.println("Enrollment failed");
         }
     }
+
+    @Override
+    public boolean isAlreadyEnrolled(int studentId, int courseId) {
+        String sql = "SELECT COUNT(*) FROM student_courses WHERE student_id = ? AND course_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, studentId);
+            ps.setInt(2, courseId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to check enrollment.");
+        }
+        return false;
+    }
+
 
     @Override
     public List<Course> getCoursesByStudentId(int studentId) {
