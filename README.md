@@ -1,11 +1,13 @@
                         Student-Course JDBC App
             📖 Overview
             This project is a simple Java application that demonstrates JDBC concepts using PostgreSQL. 
+            Now includes a many-to-many relationship between students and courses.
 
             It currently includes functionality to:
 
             Connect to a PostgreSQL database
             Perform CRUD operations (Create, Read, Update, Delete) for students via the DAO pattern
+            Managing enrollments with JOIN queries and many-to-many mappings
             
             📂 Project Structure
             src/
@@ -13,6 +15,7 @@
             ├── dao/           # Data access objects
             ├── entity/        # Entities representing database tables
             ├── main/          # Main classes for running the application
+
             🛠️ Requirements
             Java: JDK 8 or higher
             
@@ -34,6 +37,17 @@
             age INT
             );
 
+            CREATE TABLE courses (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL
+            );
+            
+            CREATE TABLE student_courses (
+            student_id INT REFERENCES students(id) ON DELETE CASCADE,
+            course_id INT REFERENCES courses(id) ON DELETE CASCADE,
+            PRIMARY KEY (student_id, course_id)
+            );
+
             Configure Database:
             
             Update the DatabaseConfig class with your PostgreSQL credentials:
@@ -51,7 +65,8 @@
             
             Run the Application:
             
-            Execute the main.TestConnection class to test the connection and retrieve student data.
+            Execute the main.TestConnection class to test the connection and retrieve, create, update, 
+            or delete student and course data..
             
             📋 Dependencies
             Include the PostgreSQL JDBC Driver in your pom.xml:
@@ -68,6 +83,8 @@
             Provides basic CRUD operations for students
             
             Demonstrates JDBC concepts like Connection, PreparedStatement, and ResultSet
+
+            Manages enrollments using JOIN queries
             
             📝 Notes
             Ensure PostgreSQL is running before executing the application.
@@ -75,11 +92,10 @@
             Customize database credentials in the DatabaseConfig class as per your local setup
             
             💡 Future Enhancements
-            Add a Course entity and implement many-to-many relationships with students
 
-            Use JOIN queries to fetch related data from multiple tables
+            Prevent duplicate enrollments using unique constraints
+
+            Add CLI menus for easier enrollment management
             
-            Incorporate exception handling and logging for better error management
-            
-            Explore integration with an ORM framework like Hibernate
+            Explore integration with ORM frameworks like Hibernate
             
