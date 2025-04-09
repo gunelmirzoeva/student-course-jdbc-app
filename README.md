@@ -1,7 +1,8 @@
                         Student-Course JDBC App
             📖 Overview
             This project is a simple Java application that demonstrates JDBC concepts using PostgreSQL. 
-            Now includes a many-to-many relationship between students and courses.
+            It includes a many-to-many relationship between students and courses.
+            It incorporates clean, layered architecture for better separation of concerns and expandability.
 
             It currently includes functionality to:
 
@@ -13,9 +14,11 @@
             src/
             ├── config/        # Database configuration
             ├── dao/           # Data access objects
+            │   ├── impl/      # DAO implementations
             ├── entity/        # Entities representing database tables
             ├── main/          # Main classes for running the application
-
+            ├── service/       # Service layer for business logic
+            │   ├── impl/      # Service implementations
             🛠️ Requirements
             Java: JDK 8 or higher
             
@@ -67,6 +70,8 @@
             
             Execute the main.TestConnection class to test the connection and retrieve, create, update, 
             or delete student and course data..
+
+            Use Main.java for running the console-based interface.
             
             📋 Dependencies
             Include the PostgreSQL JDBC Driver in your pom.xml:
@@ -78,13 +83,13 @@
             <version>42.7.5</version>
             </dependency>
             🚀 Features
-            Implements the DAO (Data Access Object) pattern for cleanly separating database logic
+            Implements the DAO pattern to ensure database logic is separated.
 
-            Provides basic CRUD operations for students
+            Introduces a service layer for validation and business rules.
             
-            Demonstrates JDBC concepts like Connection, PreparedStatement, and ResultSet
-
-            Manages enrollments using JOIN queries
+            Provides a console-based menu to interact with the system.
+            
+            Demonstrates many-to-many mappings using JOIN queries.
             
             📝 Notes
             Ensure PostgreSQL is running before executing the application.
@@ -93,9 +98,9 @@
             
             💡 Future Enhancements
 
-            Prevent duplicate enrollments using unique constraints
+            Enrollment Validation: Prevent duplicate enrollments with unique constraints.
 
-            Add CLI menus for easier enrollment management
+            Enhanced Console UI: Add more user-friendly navigation.
             
-            Explore integration with ORM frameworks like Hibernate
+            Integration: Consider ORM frameworks like Hibernate for advanced functionality.
             
