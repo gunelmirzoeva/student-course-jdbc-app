@@ -1,6 +1,7 @@
-package org.example.dao;
+package org.example.dao.impl;
 
 import org.example.config.DatabaseConfig;
+import org.example.dao.StudentDao;
 import org.example.entity.Student;
 
 import java.sql.*;
